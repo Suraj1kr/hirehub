@@ -1,0 +1,35 @@
+name: Java CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: hirehub
+          MYSQL_USER: hirehub
+          MYSQL_PASSWORD: ci-only-password
+          MYSQL_ROOT_PASSWORD: ci-only-root-password
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - run: mvn -B verify
+      - name: Verify against MySQL
+        run: mvn -B test -Dspring.profiles.active=mysqltest
+        env:
+          DB_URL: jdbc:mysql://localhost:3306/hirehub
+          DB_USERNAME: hirehub
+          DB_PASSWORD: ci-only-password
