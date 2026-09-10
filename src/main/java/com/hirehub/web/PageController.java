@@ -124,6 +124,7 @@ public class PageController {
       Model m) {
     if (result.hasErrors()) {
       m.addAttribute("id", id);
+      if (form == null) m.addAttribute("job", new JobInput("", "", "", "", false));
       m.addAttribute("message", "Complete every field within the indicated limits.");
       return "admin/form";
     }

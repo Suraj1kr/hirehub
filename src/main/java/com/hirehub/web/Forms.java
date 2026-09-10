@@ -16,7 +16,11 @@ public class Forms {
       @NotBlank @Size(max = 150) String company,
       @NotBlank @Size(max = 150) String location,
       @NotBlank @Size(max = 10000) String description,
-      boolean active) {}
+      Boolean active) {
+    public JobInput {
+      active = Boolean.TRUE.equals(active);
+    }
+  }
 
   public record ApplicationInput(@NotBlank @Size(max = 5000) String coverLetter) {}
 

@@ -1,1 +1,30 @@
-<!doctype html><html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:replace="~{fragments :: head}"></head><body><header th:replace="~{fragments :: nav}"></header><main><p class="notice" role="status" th:if="${message}" th:text="${message}"></p><section class="auth card"><p class="eyebrow">WELCOME BACK</p><h1>Log in to HireHub</h1><p class="notice" th:if="${param.registered}">Account created. You can log in now.</p><p class="notice" th:if="${param.logout}">You have been logged out.</p><p class="notice error" th:if="${param.error}" role="alert">Incorrect email or password.</p><form th:action="@{/login}" method="post"><label for="username">Email</label><input id="username" name="username" type="email" autocomplete="username" required><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required><button>Log in</button></form><p>New to HireHub? <a th:href="@{/register}">Create an account</a></p></section></main><footer>HireHub · Your next chapter starts here.</footer></body></html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: nav}">
+</header>
+<main>
+<p class="notice" role="status" th:if="${message}" th:text="${message}">
+</p>
+<section class="auth card">
+<p class="eyebrow">WELCOME BACK</p>
+<h1>Log in to HireHub</h1>
+<p class="notice" th:if="${param.registered}">Account created. You can log in now.</p>
+<p class="notice" th:if="${param.logout}">You have been logged out.</p>
+<p class="notice error" th:if="${param.error}" role="alert">Incorrect email or password.</p>
+<form th:action="@{/login}" method="post">
+<label for="username">Email</label>
+<input id="username" name="username" type="email" autocomplete="username" required>
+<label for="password">Password</label>
+<input id="password" name="password" type="password" autocomplete="current-password" required>
+<button>Log in</button>
+</form>
+<p>New to HireHub? <a th:href="@{/register}">Create an account</a>
+</p>
+</section>
+</main>
+<footer>HireHub · Your next chapter starts here.</footer>
+</body>
+</html>

@@ -274,5 +274,10 @@ class PortalIntegrationTest {
                 .param("description", "Description"))
         .andExpect(status().isOk())
         .andExpect(view().name("admin/form"));
+    mvc.perform(post("/admin/jobs/save").with(user("admin").roles("ADMIN")).with(csrf())
+            .param("title", "Closed role").param("company", "Co")
+            .param("location", "Remote").param("description", "Description"))
+        .andExpect(redirectedUrl("/admin/jobs"));
+    assertThat(jobs.findAll()).singleElement().extracting(Job::isActive).isEqualTo(false);
   }
 }

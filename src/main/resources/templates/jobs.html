@@ -1,1 +1,48 @@
-<!doctype html><html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:replace="~{fragments :: head}"></head><body><header th:replace="~{fragments :: nav}"></header><main><p class="notice" role="status" th:if="${message}" th:text="${message}"></p><div class="heading"><div><p class="eyebrow">FIND YOUR NEXT OPPORTUNITY</p><h1>Work that moves you forward.</h1><p>Explore open roles and manage your next career move.</p></div></div><form class="search" th:action="@{/jobs}" method="get"><label for="q">Search jobs</label><input id="q" name="q" th:value="${q}" maxlength="150" placeholder="Job title, company or location"><button>Search</button></form><h2>Open positions <span class="count" th:text="${jobs.totalElements}"></span></h2><div class="empty" th:if="${jobs.empty}"><h3>No open positions found</h3><p>Try a different search, or check back when new roles are posted.</p></div><div class="grid"><article class="card" th:each="job:${jobs}"><p class="eyebrow" th:text="${job.company}"></p><h2><a th:href="@{/jobs/{id}(id=${job.id})}" th:text="${job.title}"></a></h2><p th:text="${job.location}"></p><a class="text-link" th:href="@{/jobs/{id}(id=${job.id})}">View role →</a></article></div><div th:replace="~{fragments :: pager(${jobs},'/jobs')}"></div></main><footer>HireHub · Your next chapter starts here.</footer></body></html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: nav}">
+</header>
+<main>
+<p class="notice" role="status" th:if="${message}" th:text="${message}">
+</p>
+<div class="heading">
+<div>
+<p class="eyebrow">FIND YOUR NEXT OPPORTUNITY</p>
+<h1>Work that moves you forward.</h1>
+<p>Explore open roles and manage your next career move.</p>
+</div>
+</div>
+<form class="search" th:action="@{/jobs}" method="get">
+<label for="q">Search jobs</label>
+<input id="q" name="q" th:value="${q}" maxlength="150" placeholder="Job title, company or location">
+<button>Search</button>
+</form>
+<h2>Open positions <span class="count" th:text="${jobs.totalElements}">
+</span>
+</h2>
+<div class="empty" th:if="${jobs.empty}">
+<h3>No open positions found</h3>
+<p>Try a different search, or check back when new roles are posted.</p>
+</div>
+<div class="grid">
+<article class="card" th:each="job:${jobs}">
+<p class="eyebrow" th:text="${job.company}">
+</p>
+<h2>
+<a th:href="@{/jobs/{id}(id=${job.id})}" th:text="${job.title}">
+</a>
+</h2>
+<p th:text="${job.location}">
+</p>
+<a class="text-link" th:href="@{/jobs/{id}(id=${job.id})}">View role →</a>
+</article>
+</div>
+<div th:replace="~{fragments :: pager(${jobs},'/jobs')}">
+</div>
+</main>
+<footer>HireHub · Your next chapter starts here.</footer>
+</body>
+</html>

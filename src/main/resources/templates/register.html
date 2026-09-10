@@ -1,1 +1,30 @@
-<!doctype html><html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:replace="~{fragments :: head}"></head><body><header th:replace="~{fragments :: nav}"></header><main><p class="notice" role="status" th:if="${message}" th:text="${message}"></p><section class="auth card"><p class="eyebrow">YOUR NEXT CHAPTER</p><h1>Create your account</h1><form th:action="@{/register}" method="post"><label for="name">Full name</label><input id="name" name="name" maxlength="100" autocomplete="name" required><label for="email">Email</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required><label for="password">Password</label><input id="password" name="password" type="password" minlength="12" maxlength="72" autocomplete="new-password" aria-describedby="password-help" required><p id="password-help" class="muted">Use 12–72 printable ASCII characters. Spaces are allowed.</p><button>Create account</button></form><p>Already registered? <a th:href="@{/login}">Log in</a></p></section></main><footer>HireHub · Your next chapter starts here.</footer></body></html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: nav}">
+</header>
+<main>
+<p class="notice" role="status" th:if="${message}" th:text="${message}">
+</p>
+<section class="auth card">
+<p class="eyebrow">YOUR NEXT CHAPTER</p>
+<h1>Create your account</h1>
+<form th:action="@{/register}" method="post">
+<label for="name">Full name</label>
+<input id="name" name="name" maxlength="100" autocomplete="name" required>
+<label for="email">Email</label>
+<input id="email" name="email" type="email" maxlength="254" autocomplete="email" required>
+<label for="password">Password</label>
+<input id="password" name="password" type="password" minlength="12" maxlength="72" autocomplete="new-password" aria-describedby="password-help" required>
+<p id="password-help" class="muted">Use 12–72 printable ASCII characters. Spaces are allowed.</p>
+<button>Create account</button>
+</form>
+<p>Already registered? <a th:href="@{/login}">Log in</a>
+</p>
+</section>
+</main>
+<footer>HireHub · Your next chapter starts here.</footer>
+</body>
+</html>

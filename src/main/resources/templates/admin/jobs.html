@@ -1,1 +1,40 @@
-<!doctype html><html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:replace="~{fragments :: head}"></head><body><header th:replace="~{fragments :: nav}"></header><main><p class="notice" role="status" th:if="${message}" th:text="${message}"></p><div class="heading"><div><p class="eyebrow">ADMIN WORKSPACE</p><h1>Manage jobs</h1></div><a class="button" th:href="@{/admin/jobs/new}">+ Post a job</a></div><div class="empty" th:if="${jobs.empty}">No jobs yet. Post your first role to start receiving applications.</div><article class="card application" th:each="job:${jobs}"><div><span class="badge" th:text="${job.active ? 'Open' : 'Closed'}"></span><h2 th:text="${job.title}"></h2><p th:text="|${job.company} · ${job.location}|"></p></div><div class="actions"><a th:href="@{/admin/jobs/{id}/edit(id=${job.id})}">Edit</a><form th:if="${job.active}" th:action="@{/admin/jobs/{id}/close(id=${job.id})}" method="post"><button class="secondary">Close job</button></form></div></article><div th:replace="~{fragments :: pager(${jobs},'/admin/jobs')}"></div></main><footer>HireHub · Your next chapter starts here.</footer></body></html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: nav}">
+</header>
+<main>
+<p class="notice" role="status" th:if="${message}" th:text="${message}">
+</p>
+<div class="heading">
+<div>
+<p class="eyebrow">ADMIN WORKSPACE</p>
+<h1>Manage jobs</h1>
+</div>
+<a class="button" th:href="@{/admin/jobs/new}">+ Post a job</a>
+</div>
+<div class="empty" th:if="${jobs.empty}">No jobs yet. Post your first role to start receiving applications.</div>
+<article class="card application" th:each="job:${jobs}">
+<div>
+<span class="badge" th:text="${job.active ? 'Open' : 'Closed'}">
+</span>
+<h2 th:text="${job.title}">
+</h2>
+<p th:text="|${job.company} · ${job.location}|">
+</p>
+</div>
+<div class="actions">
+<a th:href="@{/admin/jobs/{id}/edit(id=${job.id})}">Edit</a>
+<form th:if="${job.active}" th:action="@{/admin/jobs/{id}/close(id=${job.id})}" method="post">
+<button class="secondary">Close job</button>
+</form>
+</div>
+</article>
+<div th:replace="~{fragments :: pager(${jobs},'/admin/jobs')}">
+</div>
+</main>
+<footer>HireHub · Your next chapter starts here.</footer>
+</body>
+</html>

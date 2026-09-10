@@ -1,1 +1,33 @@
-<!doctype html><html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:replace="~{fragments :: head}"></head><body><header th:replace="~{fragments :: nav}"></header><main><p class="notice" role="status" th:if="${message}" th:text="${message}"></p><section class="card editor"><h1 th:text="${id == null ? 'Post a job' : 'Edit job'}"></h1><form th:action="@{/admin/jobs/save}" method="post"><input th:if="${id != null}" type="hidden" name="id" th:value="${id}"><label for="title">Job title</label><input id="title" name="title" th:value="${job.title}" maxlength="150" required><label for="company">Company</label><input id="company" name="company" th:value="${job.company}" maxlength="150" required><label for="location">Location</label><input id="location" name="location" th:value="${job.location}" maxlength="150" required><label for="description">Role description</label><textarea id="description" name="description" th:text="${job.description}" maxlength="10000" rows="12" required></textarea><label class="check"><input type="checkbox" name="active" value="true" th:checked="${job.active}"> Open for applications</label><button>Save job</button> <a th:href="@{/admin/jobs}">Cancel</a></form></section></main><footer>HireHub · Your next chapter starts here.</footer></body></html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+<header th:replace="~{fragments :: nav}">
+</header>
+<main>
+<p class="notice" role="status" th:if="${message}" th:text="${message}">
+</p>
+<section class="card editor">
+<h1 th:text="${id == null ? 'Post a job' : 'Edit job'}">
+</h1>
+<form th:action="@{/admin/jobs/save}" method="post">
+<input th:if="${id != null}" type="hidden" name="id" th:value="${id}">
+<label for="title">Job title</label>
+<input id="title" name="title" th:value="${job.title}" maxlength="150" required>
+<label for="company">Company</label>
+<input id="company" name="company" th:value="${job.company}" maxlength="150" required>
+<label for="location">Location</label>
+<input id="location" name="location" th:value="${job.location}" maxlength="150" required>
+<label for="description">Role description</label>
+<textarea id="description" name="description" th:text="${job.description}" maxlength="10000" rows="12" required>
+</textarea>
+<label class="check">
+<input type="checkbox" name="active" value="true" th:checked="${job.active}"> Open for applications</label>
+<button>Save job</button> <a th:href="@{/admin/jobs}">Cancel</a>
+</form>
+</section>
+</main>
+<footer>HireHub · Your next chapter starts here.</footer>
+</body>
+</html>

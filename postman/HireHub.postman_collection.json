@@ -119,7 +119,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Login succeeded\", () => pm.expect(pm.response.headers.get(\"Location\") || \"\").not.to.include(\"error\"));"
+              "pm.test(\"Login redirects to jobs\", () => { pm.response.to.have.status(302); pm.expect(pm.response.headers.get(\"Location\")).to.match(/\\/jobs$/); });"
             ]
           }
         }

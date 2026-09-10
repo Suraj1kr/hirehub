@@ -1,1 +1,33 @@
-<!doctype html><html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:fragment="head"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HireHub | Jobs & applications</title><link rel="stylesheet" th:href="@{/css/app.css}"></head><body><header th:fragment="nav"><nav><a class="brand" th:href="@{/jobs}">Hire<span>Hub</span></a><a th:href="@{/jobs}">Explore jobs</a><a sec:authorize="hasRole('USER')" th:href="@{/applications}">My applications</a><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/jobs}">Manage jobs</a><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/applications}">Applicants</a><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/users}">Users</a><a sec:authorize="isAnonymous()" th:href="@{/login}">Log in</a><a class="button" sec:authorize="isAnonymous()" th:href="@{/register}">Create account</a><form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post"><button class="secondary">Log out</button></form></nav></header><div th:fragment="pager(data,path)" class="pager"><a th:if="${data.hasPrevious()}" th:href="@{${path}(page=${data.number - 1},q=${param.q})}">← Previous</a><span th:text="|Page ${data.number + 1} · ${data.totalElements} results|"></span><a th:if="${data.hasNext()}" th:href="@{${path}(page=${data.number + 1},q=${param.q})}">Next →</a></div></body></html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HireHub | Jobs & applications</title>
+<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header th:fragment="nav">
+<nav>
+<a class="brand" th:href="@{/jobs}">Hire<span>Hub</span>
+</a>
+<a th:href="@{/jobs}">Explore jobs</a>
+<a sec:authorize="hasRole('USER')" th:href="@{/applications}">My applications</a>
+<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/jobs}">Manage jobs</a>
+<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/applications}">Applicants</a>
+<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/users}">Users</a>
+<a sec:authorize="isAnonymous()" th:href="@{/login}">Log in</a>
+<a class="button" sec:authorize="isAnonymous()" th:href="@{/register}">Create account</a>
+<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+<button class="secondary">Log out</button>
+</form>
+</nav>
+</header>
+<div th:fragment="pager(data,path)" class="pager">
+<a th:if="${data.hasPrevious()}" th:href="@{${path}(page=${data.number - 1},q=${param.q})}">← Previous</a>
+<span th:text="|Page ${data.number + 1} · ${data.totalElements} results|">
+</span>
+<a th:if="${data.hasNext()}" th:href="@{${path}(page=${data.number + 1},q=${param.q})}">Next →</a>
+</div>
+</body>
+</html>
