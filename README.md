@@ -18,18 +18,18 @@ A complete Spring Boot application combining **HireHub** job workflows and **Aut
 
 ## Quick start: temporary demo database
 
-Install JDK 17 or newer (through Java 25) and Maven 3.9+. From this directory:
+Install JDK 17 or newer (through Java 25). Maven Wrapper scripts are included, so a separate Maven installation is optional. From this directory:
 
 ```powershell
 $env:ADMIN_EMAIL = 'admin@example.test'
 $env:ADMIN_PASSWORD = 'Choose-your-own-password-123'
-mvn spring-boot:run '-Dspring-boot.run.profiles=demo'
+.\mvnw.cmd spring-boot:run '-Dspring-boot.run.profiles=demo'
 ```
 
 On macOS/Linux:
 
 ```sh
-ADMIN_EMAIL=admin@example.test ADMIN_PASSWORD='Choose-your-own-password-123' mvn spring-boot:run -Dspring-boot.run.profiles=demo
+ADMIN_EMAIL=admin@example.test ADMIN_PASSWORD='Choose-your-own-password-123' ./mvnw spring-boot:run -Dspring-boot.run.profiles=demo
 ```
 
 Open http://localhost:8080. Sign in as the configured admin, post a job, then log out and register a User to apply. Demo mode uses an empty in-memory H2 database and loses data on shutdown. There are no built-in accounts or sample jobs. Admin credentials are only required when creating an admin.
@@ -52,6 +52,8 @@ Create a database and a dedicated account with access to it. Set `DB_URL` (for e
 An existing admin's password is never reset on startup. Bootstrap refuses to elevate an existing User with the same email. Remove the bootstrap environment variables after initial persistent setup. Public registration always creates USER accounts.
 
 ## Build and test
+
+Use `./mvnw` on macOS/Linux or `.\mvnw.cmd` in PowerShell in place of `mvn` below if Maven is not installed.
 
 ```sh
 mvn verify
